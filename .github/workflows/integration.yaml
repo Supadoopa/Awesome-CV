@@ -30,15 +30,15 @@ jobs:
       with:
         list-files: json
         filters: |
-          yaml:
+          yaml_filter:
           - '**/*.yaml'
           - '**/*.yml'
 
     - name: Filter changed YAML files to outputs
       id: filter-yaml
       run: |
-        echo "changed=${{ steps.changed-files.outputs.yaml }}" >> "$GITHUB_OUTPUT"
-        echo "files=${{ steps.changed-files.outputs.yaml_files }}" >> "$GITHUB_OUTPUT"
+        echo "changed=${{ steps.changed-files.outputs.yaml_filter }}" >> "$GITHUB_OUTPUT"
+        echo "files=${{ steps.changed-files.outputs.yaml_filter_files }}" >> "$GITHUB_OUTPUT"
 
 
   yaml:
