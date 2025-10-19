@@ -37,8 +37,8 @@ jobs:
     - name: Filter changed YAML files to outputs
       id: filter-yaml
       run: |
-        echo ::set-output name=changed::${{ steps.changed-files.outputs.yaml }}
-        echo ::set-output name=files::${{ steps.changed-files.outputs.yaml_files }}
+        echo "changed=${{ steps.changed-files.outputs.yaml }}" >> "$GITHUB_OUTPUT"
+        echo "files=${{ steps.changed-files.outputs.yaml_files }}" >> "$GITHUB_OUTPUT"
 
 
   yaml:
@@ -54,4 +54,5 @@ jobs:
     - name: Lint YAML Files
       id: yaml-lint
       run: |
-        yamllint .
+        echo "Linting files: ${{ needs.changed.outputs.yaml_files }}"
+        yamllint ${{ needs.changed.outputs.yaml_files }}

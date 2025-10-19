@@ -1,0 +1,6 @@
+services:
+  awesomecv:
+    image: awesomecv
+    build:
+      context: .
+      dockerfile: ./Dockerfile
